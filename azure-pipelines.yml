@@ -12,9 +12,9 @@ pool:
 variables:
   dockerRegistryServiceConnection: 'd810e509-c00e-40cd-ac80-4bb57b500eaf'
   tag: '$(Build.BuildId)'  
-  imageRepository: 'brxm/lucerneindexexporter'  
+  imageRepository: 'com.github.bcanvural/brxm-repo-maintainer:0.0.1-SNAPSHOT'  
   containerRegistry: 'themtmagency.azurecr.io'
-  imageRepositoryTag: 'themtmagency.azurecr.io/brxm/lucerneindexexporter'
+  imageRepositoryTag: 'themtmagency.azurecr.io/com.github.bcanvural/brxm-repo-maintainer:0.0.1-SNAPSHOT'
   imagePullSecret: 'themtmagency58719d15-auth'
   nhbcImagePullSecret: 'mtm-azuredevops-acr-sp'
   containerRegistryUser: 'themtmagency'
@@ -39,7 +39,6 @@ stages:
           mavenAuthenticateFeed: false
           effectivePomSkip: false
           sonarQubeRunAnalysis: false
-          options: '-DbuildNumber="$(tag)"'                      
       - task: Docker@2
         displayName: Tag Image
         inputs:
