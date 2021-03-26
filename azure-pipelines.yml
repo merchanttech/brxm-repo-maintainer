@@ -11,7 +11,7 @@ pool:
 
 variables:
   dockerRegistryServiceConnection: 'd810e509-c00e-40cd-ac80-4bb57b500eaf'
-  tag: '$(Build.BuildId)'  
+  #tag: '$(Build.BuildId)'  
   imageRepository: 'com.github.bcanvural/brxm-repo-maintainer'  
   containerRegistry: 'themtmagency.azurecr.io'
   imageRepositoryTag: 'themtmagency.azurecr.io/com.github.bcanvural/brxm-repo-maintainer'
