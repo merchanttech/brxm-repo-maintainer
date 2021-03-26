@@ -12,13 +12,14 @@ pool:
 variables:
   dockerRegistryServiceConnection: 'd810e509-c00e-40cd-ac80-4bb57b500eaf'
   tag: '$(Build.BuildId)'  
-  imageRepository: 'com.github.bcanvural/brxm-repo-maintainer:0.0.1-SNAPSHOT'  
+  imageRepository: 'com.github.bcanvural/brxm-repo-maintainer'  
   containerRegistry: 'themtmagency.azurecr.io'
-  imageRepositoryTag: 'themtmagency.azurecr.io/com.github.bcanvural/brxm-repo-maintainer:0.0.1-SNAPSHOT'
+  imageRepositoryTag: 'themtmagency.azurecr.io/com.github.bcanvural/brxm-repo-maintainer'
   imagePullSecret: 'themtmagency58719d15-auth'
   nhbcImagePullSecret: 'mtm-azuredevops-acr-sp'
   containerRegistryUser: 'themtmagency'
   containerRegistryPwd: 'mvdQKHI=c8Qd2VMxMG2CBK5FeGk2Vq5d'  
+  tag: ':0.0.1-SNAPSHOT'
 
 stages:
 - stage: Build
@@ -52,6 +53,5 @@ stages:
       - task: PowerShell@2
         displayName: Push to Azure Registry
         inputs:
-          targetType: 'inline'
-          script: 'docker push $(imageRepositoryTag)'      
-          #script: 'docker push $(imageRepositoryTag):$(tag)'      
+          targetType: 'inline'          
+          script: 'docker push $(imageRepositoryTag):$(tag)'      
