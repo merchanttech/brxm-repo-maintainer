@@ -45,7 +45,7 @@ stages:
         displayName: Tag Image
         inputs:
           command: 'tag'
-          arguments: '$(imageRepository):$(tag) $(imageRepositoryTag):$(tag)'      
+          arguments: '$(imageRepository):0.0.1-SNAPSHOT $(imageRepositoryTag):$(tag)'      
       - task: PowerShell@2
         displayName: Login to Azure Registry
         inputs:
