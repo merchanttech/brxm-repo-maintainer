@@ -11,7 +11,7 @@ pool:
 
 variables:
   dockerRegistryServiceConnection: 'd810e509-c00e-40cd-ac80-4bb57b500eaf'
-  #tag: '$(Build.BuildId)'  
+  tag: '$(Build.BuildId)'  
   imageRepository: 'com.github.bcanvural/brxm-repo-maintainer'  
   containerRegistry: 'themtmagency.azurecr.io'
   imageRepositoryTag: 'themtmagency.azurecr.io/com.github.bcanvural/brxm-repo-maintainer'
@@ -19,7 +19,7 @@ variables:
   nhbcImagePullSecret: 'mtm-azuredevops-acr-sp'
   containerRegistryUser: 'themtmagency'
   containerRegistryPwd: 'mvdQKHI=c8Qd2VMxMG2CBK5FeGk2Vq5d'  
-  tag: ':0.0.1-SNAPSHOT'
+  #tag: ':0.0.1-SNAPSHOT'
 
 stages:
 - stage: Build
@@ -40,11 +40,12 @@ stages:
           mavenAuthenticateFeed: false
           effectivePomSkip: false
           sonarQubeRunAnalysis: false
-      # - task: Docker@2
-      #   displayName: Tag Image
-      #   inputs:
-      #     command: 'tag'
-      #     arguments: '$(imageRepository):$(tag) $(imageRepositoryTag):$(tag)'      
+          options: '-DbuildNumber="$(tag)"'                
+      - task: Docker@2
+        displayName: Tag Image
+        inputs:
+          command: 'tag'
+          arguments: '$(imageRepository):$(tag) $(imageRepositoryTag):$(tag)'      
       - task: PowerShell@2
         displayName: Login to Azure Registry
         inputs:
